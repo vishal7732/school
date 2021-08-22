@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+{% if user.is_authenticated %}
+                            <div>
+                                <p><i class="flaticon-user"></i> Hello {{ user.first_name }} </a></p>
+                            </div>
+
+
+                            <div>
+                                <p><i class="flaticon-user"></i> Your are a <u>{{ user.last_name }}</u> </a></p>
+                            </div>
+
+                            {% if user.last_name == 'Super-Admin' %}
+
+                            <form action="register" method="POST" style="max-width:500px;margin:auto">
+                                <h2>Add a User</h2>
+                                {% csrf_token %}
+                                <br>
+                                
+                                <div class="input-container">
+                                  <i class="fa fa-user icon"></i>
+                                  <input class="input-field" type="text" placeholder="First Name" name="first_name">
+                                </div>
+                            
+                                <div class="input-container">
+                                    <i class="fa fa-user icon"></i>
+                                    <select id="last_name" name="last_name">
+                                        <option value="User">User</option>
+                                        
+                                      </select>
+                                  </div>
+                            
+                                <div class="input-container">
+                                  <i class="fa fa-user icon"></i>
+                                  <input class="input-field" type="text" placeholder="Username" name="username">
+                                </div>
+                              
+                                <div class="input-container">
+                                  <i class="fa fa-envelope icon"></i>
+                                  <input class="input-field" type="text" placeholder="Email" name="email">
+                                </div>
+                                
+                                <div class="input-container">
+                                  <i class="fa fa-key icon"></i>
+                                  <input class="input-field" type="password" placeholder="Password" name="password1">
+                                </div>
+                            
+                                <div class="input-container">
+                                  <i class="fa fa-key icon"></i>
+                                  <input class="input-field" type="password" placeholder="Confirm Password" name="password2">
+                                </div>
+                                <div>
+                                  {% for messages in messages %}
+                                  {{messages}}
+                                  {% endfor %}
+                                </div>
+                                <button type="submit" class="btn">Add</button>
+                                
+                              </form>
+                            
+                            {% elif user.last_name == 'Teacher' %}
+
+                            <form action="register" method="POST" style="max-width:500px;margin:auto">
+                                <h2>Add a Student</h2>
+                                {% csrf_token %}
+                                <br>
+                                
+                                <div class="input-container">
+                                  <i class="fa fa-user icon"></i>
+                                  <input class="input-field" type="text" placeholder="First Name" name="first_name">
+                                </div>
+                            
+                                <div class="input-container">
+                                    <i class="fa fa-user icon"></i>
+                                    <select id="last_name" name="last_name">
+                                        <option value="Student">Student</option>
+                                        
+                                      </select>
+                                  </div>
+                            
+                                <div class="input-container">
+                                  <i class="fa fa-user icon"></i>
+                                  <input class="input-field" type="text" placeholder="Username" name="username">
+                                </div>
+                              
+                                <div class="input-container">
+                                  <i class="fa fa-envelope icon"></i>
+                                  <input class="input-field" type="text" placeholder="Email" name="email">
+                                </div>
+                                
+                                <div class="input-container">
+                                  <i class="fa fa-key icon"></i>
+                                  <input class="input-field" type="password" placeholder="Password" name="password1">
+                                </div>
+                            
+                                <div class="input-container">
+                                  <i class="fa fa-key icon"></i>
+                                  <input class="input-field" type="password" placeholder="Confirm Password" name="password2">
+                                </div>
+                                <div>
+                                  {% for messages in messages %}
+                                  {{messages}}
+                                  {% endfor %}
+                                </div>
+                                <button type="submit" class="btn">Add</button>
+                                
+                              </form>
+
+                            {% elif user.last_name == 'Student' %}
+                            <div>
+                                <p><i class="flaticon-user"></i> Your Name is: {{ user.first_name }} </a></p>
+                                <p><i class="flaticon-user"></i> Your E-mail is {{ user.email }} </a></p>
+                                <p><i class="flaticon-user"></i> Your username is:  {{ user.username }} </a></p>
+                            </div>
+                            {% endif %}
+                            
+                            {% endif %}
+
+                            <div class="login_resiter">
+                              <p><i class="flaticon-user"></i><a href="/logout">Logout</a></p>
+                          </div>
+
+</body>
+</html>

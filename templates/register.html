@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<form action="register" method="POST" style="max-width:500px;margin:auto">
+    <h2>Register Form</h2>
+    {% csrf_token %}
+    <br>
+    
+    <div class="input-container">
+      <i class="fa fa-user icon"></i>
+      <input class="input-field" type="text" placeholder="First Name" name="first_name">
+    </div>
+
+    <div class="input-container">
+        <i class="fa fa-user icon"></i>
+        <select id="last_name" name="last_name">
+            <option value="Super-Admin">Super-Admin</option>
+            <option value="Teacher">Teacher</option>
+            <option value="Student">Student</option>
+            
+          </select>
+      </div>
+
+    <div class="input-container">
+      <i class="fa fa-user icon"></i>
+      <input class="input-field" type="text" placeholder="Username" name="username">
+    </div>
+  
+    <div class="input-container">
+      <i class="fa fa-envelope icon"></i>
+      <input class="input-field" type="text" placeholder="Email" name="email">
+    </div>
+    
+    <div class="input-container">
+      <i class="fa fa-key icon"></i>
+      <input class="input-field" type="password" placeholder="Password" name="password1">
+    </div>
+
+    <div class="input-container">
+      <i class="fa fa-key icon"></i>
+      <input class="input-field" type="password" placeholder="Confirm Password" name="password2">
+    </div>
+    <div>
+      {% for messages in messages %}
+      {{messages}}
+      {% endfor %}
+    </div>
+    <p><a href="{% url "password_reset" %}">Forgotten your password?</a></p>
+    <button type="submit" class="btn">Register</button>
+    
+  </form>
+
+  {% if user.is_authenticated %}
+                            <div class="login_resiter">
+                                <p><i class="flaticon-user"></i> {{ user.first_name }} | <a href="/logout">Logout</a></p>
+                            </div>
+                            
+                            {% endif %}
+
+                            
+
+</body>
+</html>
